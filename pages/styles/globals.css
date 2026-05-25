@@ -1,6 +1,12 @@
+/* GLOBAL STYLES */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --blue: #1a3fcb;
+  --red: #e8200c;
+  --ink: #111111;
+  --offwhite: #f5f4f0;
+  --cream: #f5e6a3;
+  --grey: #888888;
+  --lightgrey: #d8d8d4;
 }
 
 html,
@@ -11,11 +17,11 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: "remora-sans-w5", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    background: var(--offwhite);
+    color: var(--ink);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
 }
 
 * {
@@ -24,21 +30,24 @@ body {
   margin: 0;
 }
 
+
+  /* TYPOGRAPHY */
+
 h1 {
-  color: black;
+  color: var(--ink);
   text-decoration: none;
   font-size: 4rem;
 }
 
 h3 {
-  color: black;
+  color: var(--ink);
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: 500;
 }
 
 p, a {
-  color: black;
+  color: var(--ink);
   text-decoration: none;
   font-size: 1rem;
 }
