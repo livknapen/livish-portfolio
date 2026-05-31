@@ -6,6 +6,7 @@
   --blue: #1a3fcb;
   --red: #e8200c;
   --ink: #111111;
+  --lightdark: #2a2a3e;
   --offwhite: #f5f4f0;
   --cream: #f5e6a3;
   --grey: #888888;
@@ -53,5 +54,11 @@ p, a {
   color: var(--ink);
   text-decoration: none;
   font-size: 1rem;
+}
+
+@media (max-width: 900px) {
+  body {
+    cursor: auto;
+  }
 }
 

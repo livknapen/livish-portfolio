@@ -3,11 +3,31 @@ import { useEffect, useRef, useState } from "react";
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
+
   const [isHovering, setIsHovering] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(pointer: coarse)");
+    setIsTouchDevice(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsTouchDevice(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isTouchDevice) return;
+
     const cursor = cursorRef.current;
     const ring = ringRef.current;
+
     if (!cursor || !ring) return;
 
     let ringX = 0;
@@ -19,15 +39,18 @@ export default function CustomCursor() {
     const onMouseMove = (e: MouseEvent) => {
       curX = e.clientX;
       curY = e.clientY;
-      cursor.style.left = curX + "px";
-      cursor.style.top = curY + "px";
+
+      cursor.style.left = `${curX}px`;
+      cursor.style.top = `${curY}px`;
     };
 
     const animateRing = () => {
       ringX += (curX - ringX) * 0.12;
       ringY += (curY - ringY) * 0.12;
-      ring.style.left = ringX + "px";
-      ring.style.top = ringY + "px";
+
+      ring.style.left = `${ringX}px`;
+      ring.style.top = `${ringY}px`;
+
       animFrame = requestAnimationFrame(animateRing);
     };
 
@@ -39,6 +62,7 @@ export default function CustomCursor() {
     );
 
     document.addEventListener("mousemove", onMouseMove);
+
     interactives.forEach((el) => {
       el.addEventListener("mouseenter", onEnter);
       el.addEventListener("mouseleave", onLeave);
@@ -48,13 +72,17 @@ export default function CustomCursor() {
 
     return () => {
       document.removeEventListener("mousemove", onMouseMove);
+
       interactives.forEach((el) => {
         el.removeEventListener("mouseenter", onEnter);
         el.removeEventListener("mouseleave", onLeave);
       });
+
       cancelAnimationFrame(animFrame);
     };
-  }, []);
+  }, [isTouchDevice]);
+
+  if (isTouchDevice) return null;
 
   return (
     <>
@@ -74,6 +102,7 @@ export default function CustomCursor() {
           transition: "transform 0.15s ease",
         }}
       />
+
       <div
         ref={ringRef}
         style={{

@@ -17,7 +17,6 @@ export default function Hero() {
       </div>
     </div>
     <div className={styles['hero-sub']}>
-      <div className={styles['hero-role']}>Livish Studio</div>
       <p className={styles['hero-desc']}>Design en development met een persoonlijke aanpak. Een stukje van Liv in elk project dat ik maak.</p>
     </div>
   </div>

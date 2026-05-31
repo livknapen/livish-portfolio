@@ -75,7 +75,7 @@ export default function Navbar() {
           return (
             <li key={href}>
               <a
-                href={href} className={styles.link} style={{color: isActive ? "#1a3fcb" : "#111111",}}>
+                href={href} className={styles.link} style={{color: isActive ? "var(--blue)" : "var(--ink)",}}>
                 {label}
                 <span className={styles.underline} style={{width: isActive ? "100%" : "0%",}}/>
               </a>

@@ -60,7 +60,7 @@
   letter-spacing: 3px;
   text-transform: uppercase;
   text-decoration: none;
-  color: #111111;
+  color: var(--ink);
   position: relative;
   padding-bottom: 4px;
   transition: color 0.2s;
@@ -114,5 +114,10 @@
 
   .linkList {
     display: none;
+  }
+
+  .cta {
+    padding: 8px 18px;
+    font-size: 9px;
   }
 }
